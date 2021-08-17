@@ -2,7 +2,7 @@
 include('./db-connect.php');
 
 //write querry
-$sql = 'SELECT fname,ticket_id,ligne FROM tickets t join users u ON u.user_id = t.user ORDER BY ticket_time';
+$sql = 'SELECT * FROM tickets t left join users u ON u.user_id = t.user left join ligne l ON t.ligne = l.ligne_id ORDER BY ticket_time';
 
 //get result
 $result = mysqli_query($conn,$sql);
@@ -71,11 +71,11 @@ $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             <tr>
                               <td><?php echo $ticket['ticket_id']; ?></td>
                               <td><?php echo $ticket['fname']; ?></td>
-                              <td><?php echo $ticket['ligne']; ?></td>
-                              <!-- <td><?php echo $ticket['destination']; ?></td>
+                              <td><?php echo $ticket['departure']; ?></td>
+                              <td><?php echo $ticket['destination']; ?></td>
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('d/m/Y', $d); ?></td>
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('H:i:s A', $d); ?></td>
-                              <td><?php echo $ticket['seat_no']; ?></td> -->
+                              <td><?php echo $ticket['seat_no']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
