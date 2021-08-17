@@ -10,7 +10,7 @@ Copy database `booking.sql` from Transport/dashboard path and import it in the d
 
 ### Admin Credentials
 
-The Admin credentials are stored into the database but can be updated through the dashboard, there is no signup for the Admin.
+The Admin credentials are stored into the database but can be updated through the dashboard after loging In, there is no signup for the Admin.
 
 ```
 Username: eich
