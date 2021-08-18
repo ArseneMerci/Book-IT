@@ -1,10 +1,18 @@
+<?php 
+
+include('../Dashboard/db-connect.php');
+$sql = "SELECT * FROM tickets WHERE user ='4'";
+$result = mysqli_query($conn,$sql);
+$tickets = mysqli_fetch_all($result,MYSQLI_ASSOC);
+$count = mysqli_num_rows($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>User Statistics</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -42,7 +50,7 @@
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
                 Quick Statistics
               </h4>
-              <!-- remaining seats -->
+              <!-- Active Tickets -->
               <div class="container-fluid mt-5">
                 <div class="row">
                     <div class="col-3">
@@ -50,32 +58,32 @@
                           <div class="row">
                             <div class="col-9">
                               <div class="stat-content">
-                                <span class="d-block stat-title ">Active Buses</span>
+                                <span class="d-block stat-title ">Active Tickets</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                   17
+                                   <?php echo $count ?>
                                 </span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-              <!-- End remaining seats -->
-              <!-- remaining Buses -->
+              <!-- End Active Tickets -->
+              <!-- Expired Tickets -->
                       <div class="col-3">
                         <div class="stat-div px-3 py-2">
                           <div class="row">
                             <div class="col-9">
                               <div class="stat-content">
-                                <span class="d-block stat-title ">Remaining Buses</span>
+                                <span class="d-block stat-title ">Expired Tickets</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                    8
+                                <?php echo $count ?>
                                 </span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-              <!-- End remaining Buses -->
+              <!-- End Expired Tickets -->
                 </div>
               </div>
             </main>
