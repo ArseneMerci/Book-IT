@@ -1,3 +1,14 @@
+<?php 
+include('../Dashboard/db-connect.php');
+$sql = "SELECT * FROM users ORDER BY created_at";
+$user_result = mysqli_query($conn,$sql);
+$users =mysqli_num_rows($user_result);
+$sql = "SELECT * FROM buses ORDER BY created_at";
+$bus_result = mysqli_query($conn,$sql);
+$buses =mysqli_num_rows($bus_result);
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +54,7 @@
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
                 Quick Statistics
               </h4>
-              <!-- remaining seats -->
+              <!-- Active Tickets -->
               <div class="container-fluid mt-5">
                 <div class="row">
                     <div class="col-3">
@@ -51,32 +62,32 @@
                           <div class="row">
                             <div class="col-9">
                               <div class="stat-content">
-                                <span class="d-block stat-title ">Active Buses</span>
+                                <span class="d-block stat-title ">ALL USERS</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                   17
+                                   <?php echo $users ?>
                                 </span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-              <!-- End remaining seats -->
-              <!-- remaining Buses -->
+              <!-- End Active Tickets -->
+              <!-- Expired Tickets -->
                       <div class="col-3">
                         <div class="stat-div px-3 py-2">
                           <div class="row">
                             <div class="col-9">
                               <div class="stat-content">
-                                <span class="d-block stat-title ">Remaining Buses</span>
+                                <span class="d-block stat-title ">ALL BUSES</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                    8
+                                <?php echo $buses ?>
                                 </span>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-              <!-- End remaining Buses -->
+              <!-- End Expired Tickets -->
                 </div>
               </div>
             </main>
