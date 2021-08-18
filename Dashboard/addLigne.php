@@ -1,3 +1,23 @@
+<?php
+  include('db-connect.php');
+    if(isset($_POST['submit'])){
+        $departure = mysqli_real_escape_string($conn, $_POST['departure']);
+        $destination = mysqli_real_escape_string($conn, $_POST['destination']);
+        $price = mysqli_real_escape_string($conn, $_POST['price']);
+
+        $sql = "INSERT INTO ligne(departure,destination,price) VALUES('$departure','$destination','$price')";
+
+        if(mysqli_query($conn, $sql)){
+          // success redirects to home
+          echo "<script>alert('Ligne added Successfully!'); window.location.replace('allLigne.php')</script>";
+        } else {
+            // failure
+          echo 'query error: '. mysqli_error($conn);
+        }
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,14 +63,16 @@
             Add a new Ligne
           </h4>
           <div class="container mt-5">
-            <form action="" class="dash-form">
+            <form action="addLigne.php" method="POST" class="dash-form">
               <div class="form-group mt-3 col-6">
                 <label htmlFor="plateNo">Departure</label>
                 <div class="input-group">
                   <input
                     type="text"
                     class="form-control my-input no-shadow"
-                    placeholder="Enter Departure Location."/>
+                    placeholder="Enter Departure Location."
+                    name="departure"
+                    />
                 </div>
               </div>
               <div class="form-group mt-3 col-6">
@@ -59,7 +81,9 @@
                   <input
                     type="text"
                     class="form-control my-input no-shadow"
-                    placeholder="Enter Destination Location."/>
+                    placeholder="Enter Destination Location."
+                    name="destination"
+                    />
                 </div>
               </div>
               <div class="form-group mt-3 col-6">
@@ -69,14 +93,16 @@
                     type="decimal"
                     class="form-control my-input no-shadow"
                     placeholder="Enter The Price"
+                    name="price"
                   />
                 </div>
               </div>
               <div class="form-group mt-5 ml-3">
                 <button
-                type="button"
+                type="submit"
                 class="text-white btn btn-dark px-5 mt-2"
                 style="border-radius: 20"
+                name="submit"
               >
                 + Add Ligne
               </button>
