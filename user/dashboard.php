@@ -42,7 +42,7 @@ foreach($tickets as $ticket){
                   <ul class="nav flex-column dash-nav">
                     <li class="nav-item"><a href="dashboard.php" class="nav-link active">Dashboard</a></li>
                     <li class="nav-item"><a href="booking.php" class="nav-link">Book Ticket</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
+                    <li class="nav-item"><a href="activeTickets.php" class="nav-link">Active Tickets</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
