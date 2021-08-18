@@ -1,10 +1,26 @@
+<?php
+include('./db-connect.php');
+
+//write querry
+$sql = 'SELECT * FROM buses ORDER BY created_at';
+
+//get result
+$result = mysqli_query($conn,$sql);
+
+//fetch in array
+$buses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_close($conn);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Buses</title>
+    <title>All buses</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -25,16 +41,16 @@
                   <ul class="nav flex-column dash-nav">
                     <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
                     <li class="nav-item"><a href="newBus.php" class="nav-link">Add Bus</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link active">All Buses</a></li>
-                    <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
+                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
+                    <li class="nav-item"><a href="allbuses.php"class="nav-link active">All buses</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>
               </nav>
             <!-- nav end -->
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 main-content pb-4" style="background-color: #f6f5fa">
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 main-content pb-4"style="background-color: #f6f5fa">
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
-                All Registered Admins
+                All buses
               </h4>
               <div class="container-fluid mt-5">
                 <div class="mt-5">
@@ -43,16 +59,18 @@
                         <thead>
                           <tr>
                             <th scope="col">N0.</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Created At</th>
+                            <th scope="col">Plate No.</th>
+                            <th scope="col">Seats</th>
                           </tr>
                         </thead>
                         <tbody>
+                        <?php $no=0;foreach($buses as $bus): ?>
                             <tr>
-                              <td>1</td>
-                              <td>RAE123</td>
-                              <td>28</td>
+                              <td><?php echo ++$no; ?></td>
+                              <td><?php echo $bus['plate_no']; ?></td>
+                              <td><?php echo $bus['seats']; ?></td>
                             </tr>
+                        <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
