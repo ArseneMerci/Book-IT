@@ -9,7 +9,7 @@
 
         if(mysqli_query($conn, $sql)){
           // success redirects to home
-          echo "<script>alert('Admin added Successfully!')</script>";
+          echo "<script>alert('Admin added Successfully!'); window.location.replace('dashboard.php')</script>";
         } else {
             // failure
           echo 'query error: '. mysqli_error($conn);

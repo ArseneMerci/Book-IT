@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
 <body>
         <div class="text-center form-cont">
           <h6 class=" mb-5">Admin Login</h6>
-          <form action="login.php" method="POST">
+          <form action="admin.php" method="POST">
             <div class="row form-line">
                 <div class="col-3">
                     <label class=" ">Username:</label>
