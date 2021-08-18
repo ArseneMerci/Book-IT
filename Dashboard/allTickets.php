@@ -67,9 +67,9 @@ $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
                           </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($tickets as $ticket): ?>
+                        <?php $no=0;foreach($tickets as $ticket): ?>
                             <tr>
-                              <td><?php echo $ticket['ticket_id']; ?></td>
+                              <td><?php echo ++$no; ?></td>
                               <td><?php echo $ticket['fname']; ?></td>
                               <td><?php echo $ticket['departure']; ?></td>
                               <td><?php echo $ticket['destination']; ?></td>
