@@ -3,7 +3,7 @@ include('../Dashboard/db-connect.php');
 $sql = "SELECT * FROM tickets WHERE user ='4'";
 $now_time = date("Y-m-d h:i:s");
 //write querry
-$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = '4' AND ticket_time <= '$now_time') ORDER BY ticket_time";
+$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = '4' AND ticket_time >= '$now_time') ORDER BY ticket_time";
 // (user = '4' AND ticket_time <= $now_time)
 //get result
 $result = mysqli_query($conn,$sql);
@@ -39,10 +39,10 @@ $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <p><img src="../img/icon.png" alt="Logo" width="150" height="150" /></p>
                   </div>
                   <ul class="nav flex-column dash-nav">
-                    <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item"><a href="newBus.php" class="nav-link">Add Bus</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
-                    <li class="nav-item"><a href="allTickets.php"class="nav-link active">All Tickets</a></li>
+                  <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                    <li class="nav-item"><a href="booking.php" class="nav-link">Book Ticket</a></li>
+                    <li class="nav-item"><a href="activeTickets.php" class="nav-link active">Active Tickets</a></li>
+                    <li class="nav-item"><a href="expiredTickets.php" class="nav-link">Expired Tickets</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>

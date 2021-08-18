@@ -41,7 +41,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Ticket Booking</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -62,10 +62,10 @@
                     <p><img src="../img/icon.png" alt="Logo" width="150" height="150" /></p>
                   </div>
                   <ul class="nav flex-column dash-nav">
-                    <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                  <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
                     <li class="nav-item"><a href="booking.php" class="nav-link active">Book Ticket</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
-                    <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
+                    <li class="nav-item"><a href="activeTickets.php" class="nav-link">Active Tickets</a></li>
+                    <li class="nav-item"><a href="expiredTickets.php" class="nav-link">Expired Tickets</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>
