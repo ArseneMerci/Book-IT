@@ -30,7 +30,7 @@
 <!-- landing image -->
     <div class=" nav-background">
         <h1 class="h-title">Book Your Ticket Online</h1>
-        <a class="btn btn-success book-now-btn" href="booking.php">Book Now</a>
+        <a class="btn btn-success book-now-btn" href="user/login.php">Book Now</a>
     </div>
     <div class="section-cont">
         <div class="about-home pb-5">
@@ -73,9 +73,6 @@
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <a href="about.php" class="btn btn-warning">More About Us</a>
-        </div>
     </div>
 
     <section id="price-sec">
@@ -90,7 +87,7 @@
                           <li>Muhanga</li>
                           <li>Ruhango</li>
                           <li>Huye</li>
-                          <li class="bottom"><a href="booking.php" class="btn btn-danger">Book Now</a></li>
+                          <li class="bottom"><a href="user/login.php" class="btn btn-danger">Book Now</a></li>
                       </ul>
                   </div>
                   <div class="col-md-3">
@@ -100,7 +97,7 @@
                           <li>Musanze</li>
                           <li>Gicumbi</li>
                           <li>Burera</li>
-                          <li class="bottom"><a href="booking.php" class="btn btn-primary">Book Now</a></li>
+                          <li class="bottom"><a href="user/login.php" class="btn btn-primary">Book Now</a></li>
                       </ul>
                   </div>
                   <div class="col-md-3">
@@ -110,7 +107,7 @@
                           <li>Rwamagana</li>
                           <li>Kayonza</li>
                           <li>Nyagatare</li>
-                          <li class="bottom"><a href="booking.php" class="btn btn-success">Book Now</a></li>
+                          <li class="bottom"><a href="user/login.php" class="btn btn-success">Book Now</a></li>
                       </ul>
                   </div>
                   <div class="col-md-3">
@@ -120,7 +117,7 @@
                           <li>Karongi</li>
                           <li>Rubavu</li>
                           <li>Rusizi</li>
-                          <li class="bottom"><a href="booking.php" class="btn btn-secondary">Book Now</a></li>
+                          <li class="bottom"><a href="user/login.php" class="btn btn-secondary">Book Now</a></li>
                       </ul>
                   </div>
 

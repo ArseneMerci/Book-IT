@@ -206,4 +206,6 @@ h2 {
 .form_login{
     /* margin-bottom: 100px !important; */
     padding-bottom: 100px !important;
+    border-right: #000;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

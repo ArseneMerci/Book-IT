@@ -1,3 +1,23 @@
+<?php
+  include('dashboard/db-connect.php');
+    if(isset($_POST['submit'])){
+        $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+        $message = mysqli_real_escape_string($conn, $_POST['message']);
+
+        $sql = "INSERT INTO message(fname,email,subject,message) VALUES('$fullname','$email','$subject','$message')";
+
+        if(mysqli_query($conn, $sql)){
+          // success redirects to home
+          echo "<script>alert('Message sent Successfully!'); window.location.replace('index.php')</script>";
+        } else {
+            // failure
+          echo 'query error: '. mysqli_error($conn);
+        }
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +50,13 @@
 <div class="text-center form-cont">
   <h3>Contact Us</h3>
   <p>Let us Get in Touch, We are just one click away.</p>
-  <form>
+  <form action="contact.php" method="POST">
     <div class="row form-line">
       <div class="col-3">
         <label class=" ">Name:</label>
       </div>
       <div class="col-8">
-        <input type="text" placeholder="FullName" class="form-booking"><br>
+        <input type="text" placeholder="FullName" class="form-booking" name="fullname"><br>
       </div>
     </div>
     <div class="row form-line">
@@ -44,7 +64,7 @@
         <label class=" ">Email:</label>
       </div>
       <div class="col-8">
-        <input type="email" placeholder="email" class="form-booking"><br>
+        <input type="email" placeholder="email" class="form-booking" name="email"><br>
       </div>
     </div>
     <div class="row form-line">
@@ -52,7 +72,7 @@
         <label class=" ">Subject:</label>
       </div>
       <div class="col-8">
-        <input type="text" placeholder="Subject" class="form-booking"><br>
+        <input type="text" placeholder="Subject" class="form-booking" name="subject"><br>
       </div>
     </div>
     <div class="row form-line">
@@ -64,7 +84,7 @@
           </textarea>
       </div>
     </div>
-      <button type="submit" class="btn form-button btn-secondary">Send Message</button>
+      <button type="submit" class="btn form-button btn-secondary" name="submit">Send Message</button>
   </form>
 </div>
 

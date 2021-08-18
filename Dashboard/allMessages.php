@@ -1,21 +1,16 @@
 <?php
-  include('db-connect.php');
-    if(isset($_POST['submit'])){
-        $departure = mysqli_real_escape_string($conn, $_POST['departure']);
-        $destination = mysqli_real_escape_string($conn, $_POST['destination']);
-        $price = mysqli_real_escape_string($conn, $_POST['price']);
+include('./db-connect.php');
 
-        $sql = "INSERT INTO ligne(departure,destination,price) VALUES('$departure','$destination','$price')";
+//write querry
+$sql = 'SELECT * FROM message ORDER BY created_at';
 
-        if(mysqli_query($conn, $sql)){
-          // success redirects to home
-          echo "<script>alert('Ligne added Successfully!'); window.location.replace('allLigne.php')</script>";
-        } else {
-            // failure
-          echo 'query error: '. mysqli_error($conn);
-        }
+//get result
+$result = mysqli_query($conn,$sql);
 
-    }
+//fetch in array
+$messages = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_close($conn);
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Ligne</title>
+    <title>All Messages</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -46,14 +41,14 @@
             <ul class="nav flex-column dash-nav">
             <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
                     <li class="nav-item"><a href="addAdmin.php" class="nav-link">Add Admin</a></li>
-                    <li class="nav-item"><a href="addLigne.php" class="nav-link active">Add Ligne</a></li>
+                    <li class="nav-item"><a href="addLigne.php" class="nav-link">Add Ligne</a></li>
                     <li class="nav-item"><a href="addBus.php" class="nav-link">Add Bus</a></li>
                     <li class="nav-item"><a href="allAdmin.php"class="nav-link">All Admin</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
                     <li class="nav-item"><a href="allUsers.php"class="nav-link">All Users</a></li>
                     <li class="nav-item"><a href="allLigne.php"class="nav-link">All Ligne</a></li>
                     <li class="nav-item"><a href="allBuses.php"class="nav-link">All Buses</a></li>
-                    <li class="nav-item"><a href="allMessages.php"class="nav-link">All Messages</a></li>
+                    <li class="nav-item"><a href="allMessages.php"class="nav-link active">All Messages</a></li>
               <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
             </ul>
           </div>
@@ -65,54 +60,17 @@
           style="background-color: #f6f5fa"
         >
           <h4 class=" font-weight-bold mt-5" style="font-size: 18">
-            Add a new Ligne
+            All Messages
           </h4>
-          <div class="container mt-5">
-            <form action="addLigne.php" method="POST" class="dash-form">
-              <div class="form-group mt-3 col-6">
-                <label htmlFor="plateNo">Departure</label>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control my-input no-shadow"
-                    placeholder="Enter Departure Location."
-                    name="departure"
-                    />
-                </div>
-              </div>
-              <div class="form-group mt-3 col-6">
-                <label htmlFor="plateNo">Destination</label>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control my-input no-shadow"
-                    placeholder="Enter Destination Location."
-                    name="destination"
-                    />
-                </div>
-              </div>
-              <div class="form-group mt-3 col-6">
-                <label htmlFor="seats">Price</label>
-                <div class="input-group">
-                  <input
-                    type="decimal"
-                    class="form-control my-input no-shadow"
-                    placeholder="Enter The Price"
-                    name="price"
-                  />
-                </div>
-              </div>
-              <div class="form-group mt-5 ml-3">
-                <button
-                type="submit"
-                class="text-white btn btn-dark px-5 mt-2"
-                style="border-radius: 20"
-                name="submit"
-              >
-                + Add Ligne
-              </button>
-              </div>
-            </form>
+          <div class="row">
+            <?php foreach($messages as $message):?>
+            <div class="col-4 mt-5" style="border-right: 5px solid #000;">
+              <p><span style="color:#ebc108;font-size:larger;font-weight:bolder;font-family:Gill Sans">Name:</span> <?php echo $message['fname'];?></p>
+              <p><span style="color:#ebc108;font-size:larger;font-weight:bolder;font-family:Gill Sans">Email:</span> <?php echo $message['email'];?></p>
+              <p><span style="color:#ebc108;font-size:larger;font-weight:bolder;font-family:Gill Sans">Subject:</span> <?php echo $message['subject'];?></p>
+              <p><span style="color:#ebc108;font-size:larger;font-weight:bolder;font-family:Gill Sans">Messsage:</span> <?php echo $message['message'];?></p>
+            </div>
+            <?php endforeach; ?>
           </div>
         </main>
       </div>
