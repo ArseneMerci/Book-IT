@@ -9,6 +9,7 @@ $result = mysqli_query($conn,$sql);
 
 //fetch in array
 $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_close($conn);
 
 ?>
 

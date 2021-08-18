@@ -12,6 +12,7 @@ foreach($tickets as $ticket){
     $activeT++;
   }
 }
+mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
