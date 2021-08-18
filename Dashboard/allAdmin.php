@@ -2,13 +2,13 @@
 include('./db-connect.php');
 
 //write querry
-$sql = 'SELECT * FROM users ORDER BY created_at';
+$sql = 'SELECT * FROM admin ORDER BY created_at';
 
 //get result
 $result = mysqli_query($conn,$sql);
 
 //fetch in array
-$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_close($conn);
 
 ?>
@@ -20,7 +20,7 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All users</title>
+    <title>All admins</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -43,9 +43,9 @@ mysqli_close($conn);
                     <li class="nav-item"><a href="addAdmin.php" class="nav-link">Add Admin</a></li>
                     <li class="nav-item"><a href="addLigne.php" class="nav-link">Add Ligne</a></li>
                     <li class="nav-item"><a href="addBus.php" class="nav-link">Add Bus</a></li>
-                    <li class="nav-item"><a href="allAdmin.php"class="nav-link">All Admin</a></li>
+                    <li class="nav-item"><a href="allAdmin.php"class="nav-link active">All Admin</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
-                    <li class="nav-item"><a href="allUsers.php"class="nav-link active">All Users</a></li>
+                    <li class="nav-item"><a href="allUsers.php"class="nav-link">All Users</a></li>
                     <li class="nav-item"><a href="allLigne.php"class="nav-link">All Ligne</a></li>
                     <li class="nav-item"><a href="allBuses.php"class="nav-link">All Buses</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
@@ -55,7 +55,7 @@ mysqli_close($conn);
             <!-- nav end -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 main-content pb-4"style="background-color: #f6f5fa">
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
-                All users
+                All ADMINS
               </h4>
               <div class="container-fluid mt-5">
                 <div class="mt-5">
@@ -65,19 +65,17 @@ mysqli_close($conn);
                           <tr>
                             <th scope="col">N0.</th>
                             <th scope="col">FullName</th>
-                            <th scope="col">UserName</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone Number</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Created At</th>
                           </tr>
                         </thead>
                         <tbody>
-                        <?php $no=0;foreach($users as $user): ?>
+                        <?php $no=0;foreach($admins as $admin): ?>
                             <tr>
                               <td><?php echo ++$no; ?></td>
-                              <td><?php echo $user['fname']; ?></td>
-                              <td><?php echo $user['username']; ?></td>
-                              <td><?php echo $user['email']; ?></td>
-                              <td><?php echo $user['phone']; ?></td>
+                              <td><?php echo $admin['fullname']; ?></td>
+                              <td><?php echo $admin['username']; ?></td>
+                              <td><?php echo $admin['created_at']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

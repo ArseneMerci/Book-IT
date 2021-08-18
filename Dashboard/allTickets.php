@@ -39,10 +39,15 @@ mysqli_close($conn);
                     <p><img src="../img/icon.png" alt="Logo" width="150" height="150" /></p>
                   </div>
                   <ul class="nav flex-column dash-nav">
-                    <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item"><a href="newBus.php" class="nav-link">Add Bus</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
+                  <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
+                    <li class="nav-item"><a href="addAdmin.php" class="nav-link">Add Admin</a></li>
+                    <li class="nav-item"><a href="addLigne.php" class="nav-link">Add Ligne</a></li>
+                    <li class="nav-item"><a href="addBus.php" class="nav-link">Add Bus</a></li>
+                    <li class="nav-item"><a href="allAdmin.php"class="nav-link">All Admin</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link active">All Tickets</a></li>
+                    <li class="nav-item"><a href="allUsers.php"class="nav-link">All Users</a></li>
+                    <li class="nav-item"><a href="allLigne.php"class="nav-link">All Ligne</a></li>
+                    <li class="nav-item"><a href="allBuses.php"class="nav-link">All Buses</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>

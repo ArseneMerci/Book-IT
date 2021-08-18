@@ -6,6 +6,9 @@ $users =mysqli_num_rows($user_result);
 $sql = "SELECT * FROM buses ORDER BY created_at";
 $bus_result = mysqli_query($conn,$sql);
 $buses =mysqli_num_rows($bus_result);
+$sql = "SELECT * FROM ligne ORDER BY created_at";
+$lignes_result = mysqli_query($conn,$sql);
+$lignes =mysqli_num_rows($lignes_result);
 mysqli_close($conn);
 ?>
 
@@ -36,10 +39,14 @@ mysqli_close($conn);
                   </div>
                   <ul class="nav flex-column dash-nav">
                     <li class="nav-item"><a href="dashboard.php" class="nav-link active">Dashboard</a></li>
-                    <li class="nav-item"><a href="newAdmin.php" class="nav-link">Add Admin</a></li>
+                    <li class="nav-item"><a href="addAdmin.php" class="nav-link">Add Admin</a></li>
                     <li class="nav-item"><a href="addLigne.php" class="nav-link">Add Ligne</a></li>
-                    <li class="nav-item"><a href="allBus.php" class="nav-link">All Buses</a></li>
+                    <li class="nav-item"><a href="addBus.php" class="nav-link">Add Bus</a></li>
+                    <li class="nav-item"><a href="allAdmin.php"class="nav-link">All Admin</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
+                    <li class="nav-item"><a href="allUsers.php"class="nav-link">All Users</a></li>
+                    <li class="nav-item"><a href="allLigne.php"class="nav-link">All Ligne</a></li>
+                    <li class="nav-item"><a href="allBuses.php"class="nav-link">All Buses</a></li>
                     <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>
@@ -54,7 +61,7 @@ mysqli_close($conn);
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
                 Quick Statistics
               </h4>
-              <!-- Active Tickets -->
+              <!-- Active Users -->
               <div class="container-fluid mt-5">
                 <div class="row">
                     <div class="col-3">
@@ -71,8 +78,24 @@ mysqli_close($conn);
                           </div>
                         </div>
                       </div>
-              <!-- End Active Tickets -->
-              <!-- Expired Tickets -->
+              <!-- End Active Users -->
+              <!-- Lignes -->
+                    <div class="col-3">
+                        <div class="stat-div px-3 py-2">
+                          <div class="row">
+                            <div class="col-9">
+                              <div class="stat-content">
+                                <span class="d-block stat-title ">ALL LIGNES</span>
+                                <span class="d-block stat-data font-weight-bold ">
+                                   <?php echo $lignes ?>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              <!-- End Lignes -->
+              <!-- Expired Buses -->
                       <div class="col-3">
                         <div class="stat-div px-3 py-2">
                           <div class="row">
@@ -87,7 +110,7 @@ mysqli_close($conn);
                           </div>
                         </div>
                       </div>
-              <!-- End Expired Tickets -->
+              <!-- End Expired Buses -->
                 </div>
               </div>
             </main>

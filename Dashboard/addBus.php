@@ -1,15 +1,14 @@
 <?php
   include('db-connect.php');
     if(isset($_POST['submit'])){
-        $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
+        $plate = mysqli_real_escape_string($conn, $_POST['plate']);
+        $seats = mysqli_real_escape_string($conn, $_POST['seats']);
 
-        $sql = "INSERT INTO admin(fullname,username,password) VALUES('$fullname','$username','$password')";
+        $sql = "INSERT INTO buses(plate_no,seats) VALUES('$plate','$seats')";
 
         if(mysqli_query($conn, $sql)){
           // success redirects to home
-          echo "<script>alert('Admin added Successfully!'); window.location.replace('dashboard.php')</script>";
+          echo "<script>alert('Bus added Successfully!'); window.location.replace('dashboard.php')</script>";
         } else {
             // failure
           echo 'query error: '. mysqli_error($conn);
@@ -24,7 +23,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Admin</title>
+    <title>New Bus</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -45,9 +44,9 @@
             </div>
             <ul class="nav flex-column dash-nav">
             <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item"><a href="addAdmin.php" class="nav-link active">Add Admin</a></li>
+                    <li class="nav-item"><a href="addAdmin.php" class="nav-link">Add Admin</a></li>
                     <li class="nav-item"><a href="addLigne.php" class="nav-link">Add Ligne</a></li>
-                    <li class="nav-item"><a href="addBus.php" class="nav-link">Add Bus</a></li>
+                    <li class="nav-item"><a href="addBus.php" class="nav-link active">Add Bus</a></li>
                     <li class="nav-item"><a href="allAdmin.php"class="nav-link">All Admin</a></li>
                     <li class="nav-item"><a href="allTickets.php"class="nav-link">All Tickets</a></li>
                     <li class="nav-item"><a href="allUsers.php"class="nav-link">All Users</a></li>
@@ -64,39 +63,28 @@
           style="background-color: #f6f5fa"
         >
           <h4 class=" font-weight-bold mt-5" style="font-size: 18">
-            Add a new Admin
+            Add a new Bus
           </h4>
           <div class="container mt-5">
-            <form action="newAdmin.php" method="POST" class="dash-form">
+            <form action="addBus.php" method="POST" class="dash-form">
               <div class="form-group mt-3 col-6">
-                <label htmlFor="plateNo">Username</label>
+                <label htmlFor="plate">Plate No.</label>
                 <div class="input-group">
                   <input
                     type="text"
                     class="form-control my-input no-shadow"
-                    placeholder="Enter a Username."
-                    name="username"/>
+                    placeholder="Enter a Plate Number."
+                    name="plate"/>
                 </div>
               </div>
               <div class="form-group mt-3 col-6">
-                <label htmlFor="plateNo">Fullname</label>
+                <label htmlFor="seats">seats</label>
                 <div class="input-group">
                   <input
                     type="text"
                     class="form-control my-input no-shadow"
-                    placeholder="Enter Your Fullname."
-                    name="fullname"/>
-                </div>
-              </div>
-              <div class="form-group mt-3 col-6">
-                <label htmlFor="seats">Password</label>
-                <div class="input-group">
-                  <input
-                    type="password"
-                    class="form-control my-input no-shadow"
-                    placeholder="Enter a Password"
-                    name="password"
-                  />
+                    placeholder="Enter Number of seats."
+                    name="seats"/>
                 </div>
               </div>
               <div class="form-group mt-5 ml-3">
@@ -106,7 +94,7 @@
                 style="border-radius: 20"
                 name="submit"
               >
-                + Add Admin
+                + Add Bus
               </button>
               </div>
             </form>
