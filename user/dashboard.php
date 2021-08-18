@@ -4,7 +4,15 @@ include('../Dashboard/db-connect.php');
 $sql = "SELECT * FROM tickets WHERE user ='4'";
 $result = mysqli_query($conn,$sql);
 $tickets = mysqli_fetch_all($result,MYSQLI_ASSOC);
-$count = mysqli_num_rows($result);
+$activeT = 0;
+$expT = 0;
+foreach($tickets as $ticket){
+  if(date("Y-m-d h:i:s")>$ticket['ticket_time']){
+    $expT++;
+  }else{
+    $activeT++;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +68,7 @@ $count = mysqli_num_rows($result);
                               <div class="stat-content">
                                 <span class="d-block stat-title ">Active Tickets</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                   <?php echo $count ?>
+                                   <?php echo $activeT ?>
                                 </span>
                               </div>
                             </div>
@@ -76,7 +84,7 @@ $count = mysqli_num_rows($result);
                               <div class="stat-content">
                                 <span class="d-block stat-title ">Expired Tickets</span>
                                 <span class="d-block stat-data font-weight-bold ">
-                                <?php echo $count ?>
+                                <?php echo $expT ?>
                                 </span>
                               </div>
                             </div>
