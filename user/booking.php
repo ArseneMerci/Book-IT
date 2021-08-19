@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION["user_id"])){
   die(header('location:login.php'));
 }
+$id= $_SESSION['user_id'];
+
   include('../Dashboard/db-connect.php');
   $error="";
   $sql = "SELECT * FROM ligne";
@@ -17,7 +19,7 @@ if (!isset($_SESSION["user_id"])){
     if($error){
       // echo "errors are present";
     }else{
-    $user_id = mysqli_real_escape_string($conn, '4');
+    $user_id = mysqli_real_escape_string($conn, $id);
     $ligne_id = mysqli_real_escape_string($conn, $_POST['ligne']);
     $ticket_time = mysqli_real_escape_string($conn, $_POST['ticket_time']);
     $sql = "SELECT ticket_id FROM tickets WHERE ticket_time = '$ticket_time' and ligne= '$ligne_id'";
