@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_id"])){
+  die(header('location:login.php'));
+}
   include('../Dashboard/db-connect.php');
   $error="";
   $sql = "SELECT * FROM ligne";
