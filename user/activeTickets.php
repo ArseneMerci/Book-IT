@@ -4,16 +4,32 @@ if (!isset($_SESSION["user_id"])){
   die(header('location:login.php'));
 }
 include('../Dashboard/db-connect.php');
-$sql = "SELECT * FROM tickets WHERE user ='4'";
+if(isset($_GET['status'])){
+  if($_GET['status']=='success'){
+  echo "<script>alert('Ticket Canceled Successfuly.')</script>";
+  }else{
+    echo "<script>alert('oups!!failed to cancel the ticket.')</script>";
+  }
+}
+$id= $_SESSION['user_id'];
 $now_time = date("Y-m-d h:i:s");
 //write querry
-$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = '4' AND ticket_time >= '$now_time') ORDER BY ticket_time";
-// (user = '4' AND ticket_time <= $now_time)
+$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = $id AND ticket_time >= '$now_time') ORDER BY ticket_time";
 //get result
 $result = mysqli_query($conn,$sql);
 
 //fetch in array
 $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
+echo "<script>
+function cancel_ticket(ticket_id) {
+  let cancel = confirm('Do you really want to cancel the Ticket');
+  if(cancel == true){
+    window.location.replace('delete.php?id=1');
+  }else{
+    document.write('false')
+  }
+}
+  </script>";
 mysqli_close($conn);
 
 ?>
@@ -69,6 +85,7 @@ mysqli_close($conn);
                             <th scope="col">Departure Time</th>
                             <th scope="col">Departure Date</th>
                             <th scope="col">Seat N0.</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -80,6 +97,7 @@ mysqli_close($conn);
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('H:i:s A', $d); ?></td>
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('d/m/Y', $d); ?></td>
                               <td><?php echo $ticket['seat_no']; ?></td>
+                              <td><span><button onclick="cancel_ticket(<?php echo $ticket['ticket_id']; ?>)">cancel</button></span>|<span><a href="#">Update</a></span></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

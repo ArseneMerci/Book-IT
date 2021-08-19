@@ -1,4 +1,4 @@
-# BOOK IT 
+# BOOK IT (School Project)
 
 This is a web app that books bus tickets online for customers and helps adminstators control tickets.
 
