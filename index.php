@@ -21,8 +21,9 @@
           <ul class="nav navbar-nav d-inline">
             <div class="d-inline">
               <li class="d-inline nav-link activelink "><a href="index.php">Home</a></li>
-              <li class="d-inline nav-link"><a href="user/login.php">Booking</a></li>
+              <li class="d-inline nav-link"><a href="login.php">Booking</a></li>
               <li class="d-inline nav-link"><a href="contact.php">Contact Us</a></li>
+              <li class="d-inline nav-link "><a href="login.php">Login</a></li>
             </div>
           </ul>
         </div>

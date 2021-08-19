@@ -74,7 +74,7 @@ if (!isset($_SESSION["admin_id"])){
             Add a new Admin
           </h4>
           <div class="container mt-5">
-            <form action="newAdmin.php" method="POST" class="dash-form">
+            <form action="addAdmin.php" method="POST" class="dash-form">
               <div class="form-group mt-3 col-6">
                 <label htmlFor="plateNo">Username</label>
                 <div class="input-group">

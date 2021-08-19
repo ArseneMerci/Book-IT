@@ -98,7 +98,7 @@ if (!isset($_SESSION["admin_id"])){
                 </div>
               </div>
               <div class="form-group mt-3 col-6">
-                <label htmlFor="seats">Price</label>
+                <label htmlFor="seats">Price(rwf)</label>
                 <div class="input-group">
                   <input
                     type="decimal"

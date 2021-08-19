@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (!isset($_SESSION["user_id"])){
-  die(header('location:login.php'));
+  die(header('location:../login.php'));
 }
 $username= $_SESSION['username'];
 include('../Dashboard/db-connect.php');

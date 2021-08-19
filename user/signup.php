@@ -11,7 +11,7 @@
 
         if(mysqli_query($conn, $sql)){
           // success redirects to home
-          header('Location: login.php');
+          header('Location: ../login.php');
         } else {
             // failure
           echo 'query error: '. mysqli_error($conn);
