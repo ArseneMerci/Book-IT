@@ -10,6 +10,7 @@ $id= $_SESSION['user_id'];
   $sql = "SELECT * FROM ligne";
   $result = mysqli_query($conn,$sql);
   $lignes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
   if(isset($_GET['id'])){
   $_SESSION['ticket_id'] =$_GET['id'];
 }
@@ -109,7 +110,7 @@ $id= $_SESSION['user_id'];
           </div>
         </div>
         <p class="error-red"><?php echo $error ?></p>
-          <button type="submit" name="submit" class="btn form-button btn-warning">Book</button>
+          <button type="submit" name="submit" class="btn form-button btn-warning">Update Ticket</button>
       </form>
 
     </div>

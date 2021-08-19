@@ -7,7 +7,7 @@
 if(isset($_POST['submit'])){
   $username = $_POST['username'];
   $password = md5($_POST['password']);
-  $sql = "SELECT admin_id FROM admin WHERE username='$username' and password='$password'";
+  $sql = "SELECT admin_id,username FROM admin WHERE username='$username' and password='$password'";
   //getting result
   $result = mysqli_query($conn,$sql);
   //fetching results rows in array
@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
   $count=mysqli_num_rows($result);
   if($count == 1){
     $_SESSION['admin_id'] = $users[0]['admin_id'];
-    $_SESSION['username'] = $users[0]['username'];
+    $_SESSION['admin_username'] = $users[0]['username'];
     header('location: dashboard.php');
   }
   else{

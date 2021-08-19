@@ -5,6 +5,8 @@ if (!isset($_SESSION["admin_id"])){
 }
 ?>
 <?php 
+$username= $_SESSION['admin_username'];
+
 include('../Dashboard/db-connect.php');
 $sql = "SELECT * FROM users ORDER BY created_at";
 $user_result = mysqli_query($conn,$sql);
@@ -65,6 +67,9 @@ mysqli_close($conn);
               class="col-md-9 ml-sm-auto col-lg-10 main-content pb-4"
               style="background-color: '#000'"
             >
+            <h4 class=" font-weight-bold mt-4" style="font-size: 18">
+                Hello <?php echo strtoupper($username); ?>,
+              </h4>
               <h4 class=" font-weight-bold mt-4" style="font-size: 18">
                 Quick Statistics
               </h4>

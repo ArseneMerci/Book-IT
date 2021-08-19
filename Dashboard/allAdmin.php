@@ -111,7 +111,7 @@ mysqli_close($conn);
                               <td><?php echo $admin['fullname']; ?></td>
                               <td><?php echo $admin['username']; ?></td>
                               <td><?php echo $admin['created_at']; ?></td>
-                              <td><span><button class="mr-2 btn btn-danger" onclick="delete_admin(<?php echo $admin['admin_id']; ?>)">Delete</button></span><span><button class ="btn btn-warning" onclick="update_admin(<?php echo $admin['admin_id']; ?>)">Reschedule</button></span></td>
+                              <td><span><button class="mr-2 btn btn-danger" onclick="delete_admin(<?php echo $admin['admin_id']; ?>)">Delete</button></span><span><button class ="btn btn-warning" onclick="update_admin(<?php echo $admin['admin_id']; ?>)">Update</button></span></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
