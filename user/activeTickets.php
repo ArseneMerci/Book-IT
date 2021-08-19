@@ -44,7 +44,7 @@ mysqli_close($conn);
                     <li class="nav-item"><a href="booking.php" class="nav-link">Book Ticket</a></li>
                     <li class="nav-item"><a href="activeTickets.php" class="nav-link active">Active Tickets</a></li>
                     <li class="nav-item"><a href="expiredTickets.php" class="nav-link">Expired Tickets</a></li>
-                    <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
+                    <li class="nav-item ml-3"><button type="button" class="btn btn-warning py-1 mt-3"><a href="logout.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>
               </nav>

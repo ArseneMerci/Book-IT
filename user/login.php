@@ -1,10 +1,13 @@
 <?php
+  session_start();
+  ?>
+<?php
   $error ='';
   include('../Dashboard/db-connect.php');
 if(isset($_POST['submit'])){
   $username = $_POST['username'];
   $password = md5($_POST['password']);
-  $sql = "SELECT user_id FROM users WHERE username='$username' and password='$password'";
+  $sql = "SELECT user_id,username FROM users WHERE username='$username' and password='$password'";
   //getting result
   $result = mysqli_query($conn,$sql);
   //fetching results rows in array
@@ -12,6 +15,8 @@ if(isset($_POST['submit'])){
   //checking how many answers
   $count=mysqli_num_rows($result);
   if($count == 1){
+    $_SESSION['user_id'] = $users[0]['user_id'];
+    $_SESSION['username'] = $users[0]['username'];
     header('location: dashboard.php');
   } else{
     $error = 'Username or Password is incorrect';
