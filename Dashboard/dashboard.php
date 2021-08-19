@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["admin_id"])){
+  die(header('location:admin.php'));
+}
+?>
 <?php 
 include('../Dashboard/db-connect.php');
 $sql = "SELECT * FROM users ORDER BY created_at";
@@ -48,7 +54,7 @@ mysqli_close($conn);
                     <li class="nav-item"><a href="allLigne.php"class="nav-link">All Ligne</a></li>
                     <li class="nav-item"><a href="allBuses.php"class="nav-link">All Buses</a></li>
                     <li class="nav-item"><a href="allMessages.php"class="nav-link">All Messages</a></li>
-                    <li class="nav-item ml-3"><button type="button" href="../index.php" class="btn btn-warning py-1 mt-3"><a href="../index.php" class="text-dark">Logout</a></button></li>
+                    <li class="nav-item ml-3"><button type="button" class="btn btn-warning py-1 mt-3"><a href="logout.php" class="text-dark">Logout</a></button></li>
                   </ul>
                 </div>
               </nav>
