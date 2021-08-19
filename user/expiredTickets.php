@@ -3,12 +3,11 @@ session_start();
 if (!isset($_SESSION["user_id"])){
   die(header('location:login.php'));
 }
+$id= $_SESSION['user_id'];
 include('../Dashboard/db-connect.php');
-$sql = "SELECT * FROM tickets WHERE user ='4'";
 $now_time = date("Y-m-d h:i:s");
 //write querry
-$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = '4' AND ticket_time < '$now_time') ORDER BY ticket_time";
-// (user = '4' AND ticket_time <= $now_time)
+$sql = "SELECT * FROM tickets t join ligne l ON t.ligne = l.ligne_id WHERE (user = $id AND ticket_time < '$now_time') ORDER BY ticket_time";
 //get result
 $result = mysqli_query($conn,$sql);
 
