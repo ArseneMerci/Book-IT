@@ -32,16 +32,12 @@ function cancel_ticket(ticket_id) {
   let cancel = confirm('Do you really want to cancel the Ticket');
   if(cancel == true){
     window.location.replace('deleteTicket.php?id='+ ticket_id);
-  }else{
-    document.write('false')
   }
 };
 function update_ticket(ticket_id) {
   let update = confirm('Do you really want to update the Ticket');
   if(update == true){
     window.location.replace('updateTicket.php?id='+ ticket_id);
-  }else{
-    document.write('false')
   }
 };
   </script>";

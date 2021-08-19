@@ -6,7 +6,20 @@ if (!isset($_SESSION["admin_id"])){
 ?>
 <?php
 include('./db-connect.php');
-
+if(isset($_GET['status'])){
+  if($_GET['status']=='success'){
+  echo "<script>alert('Admin Deleted Successfuly.')</script>";
+  }else{
+    echo "<script>alert('oups!!failed to delete the Admin.')</script>";
+  }
+}
+if(isset($_GET['update'])){
+  if($_GET['update']=='success'){
+  echo "<script>alert('Admin Updated Successfuly.')</script>";
+  }else{
+    echo "<script>alert('oups!!failed to update the Admin.')</script>";
+  }
+}
 //write querry
 $sql = 'SELECT * FROM admin ORDER BY created_at';
 
@@ -15,6 +28,20 @@ $result = mysqli_query($conn,$sql);
 
 //fetch in array
 $admins = mysqli_fetch_all($result, MYSQLI_ASSOC);
+echo "<script>
+function delete_admin(admin_id) {
+  let Delete = confirm('Do you really want to Delete the admin');
+  if(Delete == true){
+    window.location.replace('deleteAdmin.php?id='+ admin_id);
+  }
+};
+function update_admin(admin_id) {
+  let update = confirm('Do you really want to update the admin');
+  if(update == true){
+    window.location.replace('updateAdmin.php?id='+ admin_id);
+  }
+};
+  </script>";
 mysqli_close($conn);
 
 ?>
@@ -74,6 +101,7 @@ mysqli_close($conn);
                             <th scope="col">FullName</th>
                             <th scope="col">Username</th>
                             <th scope="col">Created At</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -83,6 +111,7 @@ mysqli_close($conn);
                               <td><?php echo $admin['fullname']; ?></td>
                               <td><?php echo $admin['username']; ?></td>
                               <td><?php echo $admin['created_at']; ?></td>
+                              <td><span><button class="mr-2 btn btn-danger" onclick="delete_admin(<?php echo $admin['admin_id']; ?>)">Delete</button></span><span><button class ="btn btn-warning" onclick="update_admin(<?php echo $admin['admin_id']; ?>)">Reschedule</button></span></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
