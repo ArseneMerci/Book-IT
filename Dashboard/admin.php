@@ -1,4 +1,7 @@
 <?php
+  session_start();
+  ?>
+<?php
   $error ='';
   include('../Dashboard/db-connect.php');
 if(isset($_POST['submit'])){
@@ -12,9 +15,9 @@ if(isset($_POST['submit'])){
   //checking how many answers
   $count=mysqli_num_rows($result);
   if($count == 1){
+    $_SESSION['admin_id'] = $users[0]['admin_id'];
+    $_SESSION['username'] = $users[0]['username'];
     header('location: dashboard.php');
-  // } else if($count > 1){
-  //   $error = 'Database Error';
   }
   else{
     $error = 'Username or Password is incorrect';
