@@ -10,6 +10,9 @@ $id= $_SESSION['user_id'];
   $sql = "SELECT * FROM ligne";
   $result = mysqli_query($conn,$sql);
   $lignes = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  if(isset($_GET['id'])){
+  $_SESSION['ticket_id'] =$_GET['id'];
+}
 
   if(isset($_POST['submit'])){
     //escape harmful inputs
@@ -30,12 +33,14 @@ $id= $_SESSION['user_id'];
     if($count>='3'){
       echo '<script type="text/JavaScript">  alert("This bus is full"); </script>';
     }else{
-      $seat_no = ++$count;
-    $sql = "INSERT INTO tickets(user,ligne,ticket_time,seat_no) VALUES($user_id,$ligne_id,'$ticket_time','$seat_no')";
+    $seat_no = ++$count;
+    $t_id = $_SESSION['ticket_id'];
+      $sql = "UPDATE tickets SET ligne='$ligne_id',ticket_time='$ticket_time',seat_no='$seat_no' WHERE ticket_id= '$t_id'";
     if(mysqli_query($conn, $sql)){
-      header('Location: activeTickets.php');
+      unset($_SESSION["ticket_id"]);
+      header('location:activeTickets.php?update=success');
     }else {
-      echo 'query error: '. mysqli_error($conn);
+        header('location:activeTickets.php?update=failed');
           }}
         }
   }
@@ -47,7 +52,7 @@ $id= $_SESSION['user_id'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket Booking</title>
+    <title>Reschedule Ticket</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <script type="text/javascript" src="../styles/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -68,11 +73,7 @@ $id= $_SESSION['user_id'];
                     <p><img src="../img/icon.png" alt="Logo" width="150" height="150" /></p>
                   </div>
                   <ul class="nav flex-column dash-nav">
-                  <li class="nav-item"><a href="dashboard.php" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item"><a href="booking.php" class="nav-link active">Book Ticket</a></li>
-                    <li class="nav-item"><a href="activeTickets.php" class="nav-link">Active Tickets</a></li>
-                    <li class="nav-item"><a href="expiredTickets.php" class="nav-link">Expired Tickets</a></li>
-                    <li class="nav-item ml-3"><button type="button" class="btn btn-warning py-1 mt-3"><a href="logout.php" class="text-dark">Logout</a></button></li>
+                    <li class="nav-item ml-3"><button type="button" class="btn btn-warning py-1 mt-3"><a href="activeTickets.php" class="text-dark">Back</a></button></li>
                   </ul>
                 </div>
               </nav>
@@ -84,9 +85,9 @@ $id= $_SESSION['user_id'];
               style="background-color: '#000'"
             >
             <div class="text-center form-cont mb-5">
-      <h3>Booking</h3>
-      <p>Book your transport ticket by filling the bellow form</p>
-      <form action="booking.php" method="POST">
+      <h3>Reschedule Ticket</h3>
+      <p>Reschedule your Ticket By booking a new one.</p>
+      <form action="updateTicket.php" method="POST">
         <div class="row form-line">
           <div class="col-3">
             <label class=" ">Destination:</label>

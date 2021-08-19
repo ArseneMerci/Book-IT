@@ -11,6 +11,13 @@ if(isset($_GET['status'])){
     echo "<script>alert('oups!!failed to cancel the ticket.')</script>";
   }
 }
+if(isset($_GET['update'])){
+  if($_GET['update']=='success'){
+  echo "<script>alert('Ticket Updated Successfuly.')</script>";
+  }else{
+    echo "<script>alert('oups!!failed to update the ticket.')</script>";
+  }
+}
 $id= $_SESSION['user_id'];
 $now_time = date("Y-m-d h:i:s");
 //write querry
@@ -24,11 +31,19 @@ echo "<script>
 function cancel_ticket(ticket_id) {
   let cancel = confirm('Do you really want to cancel the Ticket');
   if(cancel == true){
-    window.location.replace('delete.php?id=1');
+    window.location.replace('deleteTicket.php?id='+ ticket_id);
   }else{
     document.write('false')
   }
-}
+};
+function update_ticket(ticket_id) {
+  let update = confirm('Do you really want to update the Ticket');
+  if(update == true){
+    window.location.replace('updateTicket.php?id='+ ticket_id);
+  }else{
+    document.write('false')
+  }
+};
   </script>";
 mysqli_close($conn);
 
@@ -97,7 +112,7 @@ mysqli_close($conn);
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('H:i:s A', $d); ?></td>
                               <td><?php $d = strtotime($ticket['ticket_time']);echo date('d/m/Y', $d); ?></td>
                               <td><?php echo $ticket['seat_no']; ?></td>
-                              <td><span><button onclick="cancel_ticket(<?php echo $ticket['ticket_id']; ?>)">cancel</button></span>|<span><a href="#">Update</a></span></td>
+                              <td><span><button class="mr-2 btn btn-danger" onclick="cancel_ticket(<?php echo $ticket['ticket_id']; ?>)">cancel</button></span><span><button class ="btn btn-warning" onclick="update_ticket(<?php echo $ticket['ticket_id']; ?>)">Reschedule</button></span></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
